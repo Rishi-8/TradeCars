@@ -1,6 +1,8 @@
+import { Text } from "@chakra-ui/react";
+
 function App() {
   return (
-    <div>Hello</div>
+      <Text>Hello</Text>
   );
 }
 
