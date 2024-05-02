@@ -30,7 +30,7 @@ export const Footer = () => {
         <Box flex={1} mx='10' my='auto'>
             <Button alignSelf='center' justifySelf='center' w='100%' size='lg' variant='outline' color='white' _hover={{color: 'black', bg:'white'}}>Contact Us</Button>
             <HStack py={2} mb='4' justifyContent='center'>
-                <Image src='https://img.icons8.com/?size=96&id=32323&format=png' boxSize='50px' filter='grayscale(1)' transition='0.3s ease filter' _hover={{filter: 'grayscale(0)', cursor: 'pointer'}}/>
+                <Image src='https://img.icons8.com/?size=96&id=Xy10Jcu1L2Su&format=png' boxSize='50px' filter='grayscale(1)' transition='0.3s ease filter' _hover={{filter: 'grayscale(0)', cursor: 'pointer'}}/>
                 <Image src='https://img.icons8.com/?size=96&id=13912&format=png' boxSize='50px' filter='grayscale(1)' transition='0.3s ease filter' _hover={{filter: 'grayscale(0)', cursor: 'pointer'}}/>
                 <Image src='https://img.icons8.com/?size=96&id=ClbD5JTFM7FA&format=png' boxSize='50px' filter='grayscale(2)' transition='0.3s ease filter' _hover={{filter: 'grayscale(0)', cursor: 'pointer'}}/>
             </HStack>
