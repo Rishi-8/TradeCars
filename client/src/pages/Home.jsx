@@ -6,6 +6,7 @@ import { CarCard } from '../components/CarCard'
 import { distance } from 'framer-motion'
 import { PopularCars } from '../components/PopularCars'
 import { Brands } from '../components/Brands'
+import { NewCars } from '../components/NewCars'
 
 export const Home = () => {
 
@@ -35,6 +36,7 @@ export const Home = () => {
         <Box mx={10}>
           <PopularCars/>
           <Brands/>
+          <NewCars/>
         </Box>
     </Box>
   )
