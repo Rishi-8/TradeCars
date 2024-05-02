@@ -13,7 +13,7 @@ export const SellCar = () => {
     <Box py={5} px={7}>
         <Heading mb={5}>Sell Car</Heading>
         {image && 
-            <Image src={image} borderRadius='lg' mx='auto' w='60%'/>
+            <Image src={image} borderRadius='lg' mx='auto' w='60%' mb={10}/>
         }
         <form style={{textAlign: 'center'}}>
             <Flex wrap='wrap'>

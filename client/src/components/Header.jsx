@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 export const Header = () => {
   const [searchQuery, setSearchQuery] = useState("")
 
+  const user = false;
+
   const navigate = useNavigate()
 
   const handleSearch = (e) => {
@@ -35,18 +37,24 @@ export const Header = () => {
         <Link mr={2} fontSize='1.1rem' fontWeight='semibold' _hover={{ textDecoration: "none" }} href='/used-car'>Buy Used Car</Link>
         <Link fontSize='1.1rem' fontWeight='semibold' _hover={{ textDecoration: "none" }} href='/sell-car'>Sell Car</Link>
         <Button as={Link} href='/favourites'><Icon as={FaHeart} variant='ghost'/></Button>
-        <Menu>
-          <MenuButton as={Button} variant='ghost'>
-            <Avatar size='sm'/>
-          </MenuButton>
-          <MenuList>
-            <MenuItem>Account</MenuItem>
-            <MenuItem>Your Orders</MenuItem>
-            <MenuItem>Your Cars Listing</MenuItem>
-            <MenuDivider/>
-            <MenuItem>Sign out</MenuItem>
-          </MenuList>
-        </Menu>
+        {user ? 
+          <Menu>
+            <MenuButton as={Button} variant='ghost'>
+              <Avatar size='sm'/>
+            </MenuButton>
+            <MenuList>
+              <MenuItem>Account</MenuItem>
+              <MenuItem>Your Orders</MenuItem>
+              <MenuItem>Your Cars Listing</MenuItem>
+              <MenuDivider/>
+              <MenuItem>Sign out</MenuItem>
+            </MenuList>
+          </Menu> :
+          <>
+            <Button as={Link} href='/sign-in' colorScheme='blue' _hover={{textDecoration: 'none'}}>Sign in</Button>
+            <Button as={Link} href='/sign-up' colorScheme='blue' _hover={{textDecoration: 'none'}}>Sign up</Button>
+          </>
+        }
     </HStack>
   )
 }
