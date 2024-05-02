@@ -10,6 +10,7 @@ import { Footer } from "./components/Footer";
 
 import { NewCar } from "./pages/NewCar";
 import { UsedCar } from "./pages/UsedCar";
+import { Favourites } from "./pages/Favourites";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/sign-up" element={<Signup/>}/>
           <Route path="/new-car" element={<NewCar/>}/>
           <Route path="/used-car" element={<UsedCar/>}/>
+          <Route path="/favourites" element={<Favourites/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>
