@@ -6,6 +6,7 @@ import { Header } from "./components/Header";
 import { Box } from "@chakra-ui/react";
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/sign-in" element={<Signin/>}/>
           <Route path="/sign-up" element={<Signup/>}/>
         </Routes>
+        <Footer/>
       </BrowserRouter>
   );
 }

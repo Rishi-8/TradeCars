@@ -16,7 +16,7 @@ export const PopularCars = () => {
     }
 
   return (
-    <Box py={10}>
+    <Box py={10} mt='20px'>
         <Box position='relative' mb={10}>
             <Divider height='1px' bgColor='gray.500'/>
             <AbsoluteCenter bg='white' px={4} fontSize='2rem' fontWeight='bold'>
