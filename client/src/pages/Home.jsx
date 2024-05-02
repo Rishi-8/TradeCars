@@ -5,6 +5,7 @@ import carimage from '../assets/carimage.jpg'
 import { CarCard } from '../components/CarCard'
 import { distance } from 'framer-motion'
 import { PopularCars } from '../components/PopularCars'
+import { Brands } from '../components/Brands'
 
 export const Home = () => {
 
@@ -33,6 +34,7 @@ export const Home = () => {
         </Box> */}
         <Box mx={10}>
           <PopularCars/>
+          <Brands/>
         </Box>
     </Box>
   )

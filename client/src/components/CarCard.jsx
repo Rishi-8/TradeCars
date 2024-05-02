@@ -3,7 +3,7 @@ import React from 'react'
 
 export const CarCard = ({name, model, image, date, distance, fuelType, gearType, price}) => {
   return (
-    <Card w='300px' borderRadius='lg' overflow='hidden' mx='auto'>
+    <Card w='300px' borderRadius='lg' overflow='hidden' mx='auto' _hover={{opacity:'0.8', cursor:'pointer'}}>
       <Image src={image} w='100%' h='200px'/>
       <Box p={5}>
         <Text>{model}</Text>
