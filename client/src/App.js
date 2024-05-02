@@ -8,15 +8,20 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { Footer } from "./components/Footer";
 
+import { NewCar } from "./pages/NewCar";
+import { UsedCar } from "./pages/UsedCar";
+
 function App() {
   return (
       <BrowserRouter>
         <Header/>
-        <Box marginTop={20}/>
+        <Box mt='80px'/>
         <Routes>
           <Route path="/" element={<Home/>}/>
           <Route path="/sign-in" element={<Signin/>}/>
           <Route path="/sign-up" element={<Signup/>}/>
+          <Route path="/new-car" element={<NewCar/>}/>
+          <Route path="/used-car" element={<UsedCar/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

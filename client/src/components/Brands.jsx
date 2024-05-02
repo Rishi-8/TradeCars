@@ -29,7 +29,7 @@ export const Brands = () => {
         <Flex direction='row' wrap='wrap'>
             {brands.map((brand, index) => (
                 <Box width='16%' key={index}> 
-                    <Card textAlign='center' height='100px' width='140px' mx='auto' mb={5}>
+                    <Card textAlign='center' height='100px' width='140px' mx='auto' transition='0.1s ease all' mb={5} _hover={{height:'110px', width:'150px', mb:'0', cursor:'pointer'}}>
                         <Image src={brand.image} mt='auto'/>
                         <Text mb='auto' pt='2'>{brand.name}</Text>
                     </Card>

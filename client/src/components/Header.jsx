@@ -5,7 +5,7 @@ import React from 'react'
 
 export const Header = () => {
   return (
-    <HStack py={5} px={7} bg='gray.100' position='fixed' top='0' zIndex='100' w='100%'>
+    <HStack height='80px' px={7} bg='gray.100' position='fixed' top='0' zIndex='100' w='100%'>
         <Text fontSize='2xl' fontWeight='bold' color='blue.600'>TradeCars</Text>
         <Icon as={IoCarSportSharp} color='blue.600' boxSize='40px'/>
         <form style={{marginLeft:'auto'}}>
