@@ -11,6 +11,9 @@ import { Footer } from "./components/Footer";
 import { NewCar } from "./pages/NewCar";
 import { UsedCar } from "./pages/UsedCar";
 import { Favourites } from "./pages/Favourites";
+import { SellCar } from "./pages/SellCar";
+import { CarDetails } from "./pages/CarDetails";
+import { SearchResult } from "./pages/SearchResult";
 
 function App() {
   return (
@@ -23,7 +26,10 @@ function App() {
           <Route path="/sign-up" element={<Signup/>}/>
           <Route path="/new-car" element={<NewCar/>}/>
           <Route path="/used-car" element={<UsedCar/>}/>
+          <Route path="/sell-car" element={<SellCar/>}/>
           <Route path="/favourites" element={<Favourites/>}/>
+          <Route exact path="/cars/:carId" element={<CarDetails/>}/>
+          <Route exact path="/search/:query" element={<SearchResult/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>
