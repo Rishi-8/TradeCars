@@ -17,7 +17,7 @@ export const Home = () => {
   return (
     <Box>
         <Box position='relative' width='100%'>
-            <Image src={front_car} opacity='0.5' width='100%'/>
+            <Image src={front_car} opacity='0.8' width='100%'/>
             <Text position='absolute' top='100' left='10%' fontSize='5rem' fontWeight='semibold'>Buy Cars from verified sellers</Text>
             <Button position='absolute' top='230' left='40%' size='lg' colorScheme='purple'>Buy used Cars</Button>
         </Box>

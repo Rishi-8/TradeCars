@@ -1,15 +1,40 @@
-import { Box, Button, Card, Flex, FormControl, FormLabel, Heading, Image, Input, Link, Text } from '@chakra-ui/react'
+import { Box, Button, Card, Flex, FormControl, FormLabel, Heading, Image, Input, Link, Text, useToast } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import loginimage from '../assets/login-banner.svg'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
  
 export const Signin = () => {
-
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
 
-  const handleSubmit = (e) => {
+  const toast = useToast()
+
+  const navigate = useNavigate()
+
+  const handleSubmit = async(e) => {
     e.preventDefault()
-    
+    try {
+      const res = await axios.post('api/users/auth', {email, password})
+      if(res?.data?.token){
+        localStorage.setItem('token', res.data.token)
+        navigate("/")
+        toast({
+          title: 'Login Successful',
+          status: 'success',
+          position: 'top',
+          isClosable: 'true'
+        })
+      }
+    } catch (error) {
+      console.log(error)
+      toast({
+        title: 'Invalid Password or Email',
+        status: 'error',
+        position: 'top',
+        isClosable: 'true'
+      })
+    }
   }
 
   return (

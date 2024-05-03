@@ -1,13 +1,16 @@
 import { Avatar, Box, Button, HStack, Icon, Image, Input, Text, Link, Menu, MenuButton, MenuList, MenuItem, MenuDivider } from '@chakra-ui/react'
 import { IoCarSportSharp } from "react-icons/io5";
 import { FaSearch, FaHeart } from "react-icons/fa";
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
   const [searchQuery, setSearchQuery] = useState("")
+  const [token, setToken] = useState()
 
-  const user = false;
+  useEffect(() => {
+    setToken(localStorage.getItem('token'))
+  })
 
   const navigate = useNavigate()
 
@@ -17,6 +20,11 @@ export const Header = () => {
       return
     }
     else navigate(`/search/${searchQuery}`)
+  }
+
+  const handleLogOut = () => {
+    localStorage.removeItem('token')
+    setToken(null)
   }
  
   return (
@@ -37,7 +45,7 @@ export const Header = () => {
         <Link mr={2} fontSize='1.1rem' fontWeight='semibold' _hover={{ textDecoration: "none" }} href='/used-car'>Buy Used Car</Link>
         <Link fontSize='1.1rem' fontWeight='semibold' _hover={{ textDecoration: "none" }} href='/sell-car'>Sell Car</Link>
         <Button as={Link} href='/favourites'><Icon as={FaHeart} variant='ghost'/></Button>
-        {user ? 
+        {token ? 
           <Menu>
             <MenuButton as={Button} variant='ghost'>
               <Avatar size='sm'/>
@@ -47,7 +55,7 @@ export const Header = () => {
               <MenuItem>Your Orders</MenuItem>
               <MenuItem>Your Cars Listing</MenuItem>
               <MenuDivider/>
-              <MenuItem>Sign out</MenuItem>
+              <MenuItem onClick={handleLogOut}>Sign out</MenuItem>
             </MenuList>
           </Menu> :
           <>
