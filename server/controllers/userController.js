@@ -17,11 +17,10 @@ const authUser = async(req, res, next) => {
             })
         }
         else{
-            res.status(401);
-            throw new Error('Invalid email or password')
+            res.status(401).json({ error: 'Invalid email or password' });
         }
     } catch (error) {
-        next(error)
+        res.status(500).json({ error: error.message });
     }
 }
 
@@ -32,9 +31,7 @@ const registerUser = async( req, res, next) => {
         const userExists = await User.findOne({email})
 
         if(userExists) {
-            const error = new Error('User already exists')
-            error.statusCode = 409
-            throw error
+            res.status(409).json({ error: 'User Already exists' });
         }
 
         const user = await User.create({
@@ -54,7 +51,7 @@ const registerUser = async( req, res, next) => {
             })
         }
     } catch (error) {
-        next(error)
+        res.status(500).json({ "error": error.message })
     }
 }
 
@@ -63,7 +60,12 @@ const logoutUser = async(req, res) => {
 }
 
 const getUserProfile = async(req, res) => {
-    res.status(200).json({ message: 'get user profile' })
+    const user = {
+        _id: req.user._id,
+        name: req.user.name,
+        email: req.user.email
+    }
+    res.status(200).json(user)
 }
 
 const updateUserProfile = async(req, res) => {

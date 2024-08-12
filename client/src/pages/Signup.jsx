@@ -66,9 +66,9 @@ export const Signup = () => {
                 <FormLabel>Password</FormLabel>
                 <Input type='text'/>
               </FormControl>
-              <Button type='submit' w='100%' size='lg' colorScheme='blue' mt={5}>Sign in</Button>
+              <Button type='submit' w='100%' size='lg' colorScheme='blue' mt={5}>Sign up</Button>
             </form>
-            <Text pt={1}>Don't have an account? <Link href='/sign-in' color='blue.500'>Sign in</Link></Text>
+            <Text pt={1}>Already have an account? <Link href='/sign-in' color='blue.500'>Sign in</Link></Text>
           </Box>
         </Flex>
       </Card>

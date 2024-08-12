@@ -3,13 +3,31 @@ import { IoCarSportSharp } from "react-icons/io5";
 import { FaSearch, FaHeart } from "react-icons/fa";
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export const Header = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const [token, setToken] = useState()
+  const [user, setUser] = useState()
 
   useEffect(() => {
     setToken(localStorage.getItem('token'))
+
+    if(token) {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
+      axios.get('api/users/profile', config)
+      .then( response=> {
+        setUser(response.data.name)
+      })
+      .catch( error => {
+        console.error(error)
+      }
+      )
+    }
   })
 
   const navigate = useNavigate()
@@ -56,6 +74,7 @@ export const Header = () => {
               <MenuItem>Your Cars Listing</MenuItem>
               <MenuDivider/>
               <MenuItem onClick={handleLogOut}>Sign out</MenuItem>
+              <Text ml={3}>{user}</Text>
             </MenuList>
           </Menu> :
           <>
