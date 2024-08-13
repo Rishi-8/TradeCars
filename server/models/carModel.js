@@ -18,7 +18,7 @@ const carSchema = new mongoose.Schema({
         type: Number,
         required: (true, "car used period is mandatory")
     },
-    Location: {
+    location: {
         type: String,
         required: (true, "car location is mandatory")
     },
