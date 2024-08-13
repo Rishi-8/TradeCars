@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 import userRoutes from './routes/userRoutes.js'
+import carRoutes from './routes/carRoutes.js'
 import connectDB from './config/db.js';
 
 connectDB()
@@ -13,6 +14,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 app.use('/api/users', userRoutes);
+app.use('/api/cars', carRoutes)
 
 app.get('/', (req, res) => res.send('Server is ready'))
 
