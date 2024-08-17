@@ -27,10 +27,32 @@ const getCar = async(req, res) => {
     }
 }
 
-const createCar = async(req, res) => {
-    const { make, model, usedPeriod, location, price } = req.body
+const getNewCars = async (req, res) => {
     try{
-        if(!make || !model || !usedPeriod || !location || !price) {
+        const cars = await Car.find({user_id: req.user.id, usedPeriod: 0})
+        res.status(200).json(cars)
+    }
+    catch(error){
+        console.error(error);
+        res.status(error.statuscode || 500).json({response: "An error occured", message: error.message})
+    }
+}
+
+const getUsedCars = async (req, res) => {
+    try{
+        const cars = await Car.find({user_id: req.user.id, usedPeriod: {$gt: 0}})
+        res.status(200).json(cars)
+    }
+    catch(error){
+        console.error(error);
+        res.status(error.statuscode || 500).json({response: "An error occured", message: error.message})
+    }
+}
+
+const createCar = async(req, res) => {
+    const { make, model, usedPeriod, usedDistance, fuelType, gearType, location, price, tag } = req.body
+    try{
+        if(!make || !model || !usedPeriod || !usedDistance || !fuelType || !gearType || !location || !price) {
             const error = new Error("some data is missing")
             error.statuscode = 400
             throw error
@@ -40,8 +62,12 @@ const createCar = async(req, res) => {
             make,
             model,
             usedPeriod,
+            usedDistance,
+            fuelType,
+            gearType,
             location,
-            price
+            price,
+            tag
         })
         res.status(200).json(car)
     }
@@ -91,4 +117,4 @@ const deleteCar = async(req, res) => {
     }
 }
 
-export {getCars, getCar, createCar, updateCar, deleteCar}
+export {getCars, getCar, getNewCars, getUsedCars, createCar, updateCar, deleteCar}

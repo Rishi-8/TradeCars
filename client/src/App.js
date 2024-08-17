@@ -14,6 +14,7 @@ import { Favourites } from "./pages/Favourites";
 import { SellCar } from "./pages/SellCar";
 import { CarDetails } from "./pages/CarDetails";
 import { SearchResult } from "./pages/SearchResult";
+import { Settings } from "./pages/Settings";
 
 function App() {
   return (
@@ -30,6 +31,10 @@ function App() {
           <Route path="/favourites" element={<Favourites/>}/>
           <Route exact path="/cars/:carId" element={<CarDetails/>}/>
           <Route exact path="/search/:query" element={<SearchResult/>}/>
+          <Route path="/settings" element={<Settings/>}/>
+          <Route path="/settings/account" element={<Settings/>}/>
+          <Route path="/settings/orders" element={<Settings/>}/>
+          <Route path="/settings/favourites" element={<Settings/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

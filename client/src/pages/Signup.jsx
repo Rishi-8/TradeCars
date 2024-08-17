@@ -23,7 +23,7 @@ export const Signup = () => {
         localStorage.setItem('token', res.data.token)
         navigate('/')
         toast({
-          title: 'Login Successful',
+          title: 'Registeration Successful',
           status: 'success',
           position: 'top',
           isClosable: 'true'

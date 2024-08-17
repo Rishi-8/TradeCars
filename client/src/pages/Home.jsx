@@ -16,10 +16,15 @@ export const Home = () => {
 
   return (
     <Box>
-        <Box position='relative' width='100%'>
-            <Image src={front_car} opacity='0.8' width='100%'/>
-            <Text position='absolute' top='100' left='10%' fontSize='5rem' fontWeight='semibold'>Buy Cars from verified sellers</Text>
-            <Button position='absolute' top='230' left='40%' size='lg' colorScheme='purple'>Buy used Cars</Button>
+        <Box position='relative' width='100%' color='white'
+          _after={{content: '""', pos:'absolute', top:0, left:0, bg: "rgb(51, 41, 41)", width: "100%", h: "100%", opacity: "0.5"}}>
+            <Image 
+              src={front_car} 
+              pos='relative'
+              width='100%'
+            />
+            <Text zIndex={2} position='absolute' top='100' left='10%' fontSize='5rem' fontWeight='semibold'>Buy Cars from verified sellers</Text>
+            <Button zIndex={2} position='absolute' top='230' left='40%' size='lg' colorScheme='purple'>Buy used Cars</Button>
         </Box>
         {/* <Box p={5}>
           <CarCard 

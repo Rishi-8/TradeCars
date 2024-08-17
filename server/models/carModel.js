@@ -18,6 +18,18 @@ const carSchema = new mongoose.Schema({
         type: Number,
         required: (true, "car used period is mandatory")
     },
+    usedDistance: {
+        type: Number,
+        required: (true, "car used distance is mandatory")
+    },
+    fuelType: {
+        type: String,
+        required: (true, "car fuel type is mandatory")
+    },
+    gearType: {
+        type: String,
+        required: (true, "car gear type is mandatory")
+    },
     location: {
         type: String,
         required: (true, "car location is mandatory")
@@ -26,6 +38,9 @@ const carSchema = new mongoose.Schema({
         type: Number,
         required: (true, "car price is mandatory")
     },
+    tag: {
+        type: String
+    }
 }, {
     timestamps: true
 })
