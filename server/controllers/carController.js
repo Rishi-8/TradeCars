@@ -50,7 +50,8 @@ const getUsedCars = async (req, res) => {
 }
 
 const createCar = async(req, res) => {
-    const { make, model, usedPeriod, usedDistance, fuelType, gearType, location, price, tag } = req.body
+    const { make, model, usedPeriod, usedDistance, fuelType, gearType, location, price } = req.body
+    const tag = Math.random() < 0.5 ? "popular" : null
     try{
         if(!make || !model || !usedPeriod || !usedDistance || !fuelType || !gearType || !location || !price) {
             const error = new Error("some data is missing")

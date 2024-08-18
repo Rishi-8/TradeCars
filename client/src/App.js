@@ -31,10 +31,11 @@ function App() {
           <Route path="/favourites" element={<Favourites/>}/>
           <Route exact path="/cars/:carId" element={<CarDetails/>}/>
           <Route exact path="/search/:query" element={<SearchResult/>}/>
-          <Route path="/settings" element={<Settings/>}/>
-          <Route path="/settings/account" element={<Settings/>}/>
-          <Route path="/settings/orders" element={<Settings/>}/>
-          <Route path="/settings/favourites" element={<Settings/>}/>
+          {/* <Route path="/settings" element={<Settings/>}/> */}
+          <Route path="/account" element={<Settings/>}/>
+          <Route path="/orders" element={<Settings/>}/>
+          <Route path="/favourites" element={<Settings/>}/>
+          <Route path="/car-listing" element={<Settings/>}/>
         </Routes>
         <Footer/>
       </BrowserRouter>

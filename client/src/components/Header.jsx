@@ -72,9 +72,9 @@ export const Header = () => {
             </HStack>
           </MenuButton>
           <MenuList>
-            <MenuItem>Account</MenuItem>
-            <MenuItem>Your Orders</MenuItem>
-            <MenuItem>Your Cars Listing</MenuItem>
+            <MenuItem as={Link} _hover={{textDecoration:'none'}} href='/account'>Account</MenuItem>
+            <MenuItem as={Link} _hover={{textDecoration:'none'}} href='/orders'>Your Orders</MenuItem>
+            <MenuItem as={Link} _hover={{textDecoration:'none'}} href='/car-listing'>Your Cars Listing</MenuItem>
             <MenuDivider />
             <MenuItem onClick={handleLogOut}>Sign out</MenuItem>
             <Text ml={3}>{user}</Text>
