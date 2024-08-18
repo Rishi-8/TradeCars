@@ -1,21 +1,29 @@
 import { Box, Heading} from '@chakra-ui/react'
-import React from 'react'
-import carimage from '../assets/carimage.jpg'
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
 import { CarListing } from '../components/CarListing'
 
 export const NewCar = () => {
 
-    const cars = [
-        {image: carimage, model: 'Reanult', name: 'Liger', distance: '20k', fuelType: 'Petrol', gearType: 'manual', price: '2Lakh', date: '22-12-2023'},
-        {image: carimage, model: 'Reanult', name: 'Liger', distance: '20k', fuelType: 'Petrol', gearType: 'manual', price: '2Lakh', date: '22-12-2023'},
-        {image: carimage, model: 'Reanult', name: 'Liger', distance: '20k', fuelType: 'Petrol', gearType: 'manual', price: '2Lakh', date: '22-12-2023'},
-        {image: carimage, model: 'Reanult', name: 'Liger', distance: '20k', fuelType: 'Petrol', gearType: 'manual', price: '2Lakh', date: '22-12-2023'},
-        {image: carimage, model: 'Reanult', name: 'Liger', distance: '20k', fuelType: 'Petrol', gearType: 'manual', price: '2Lakh', date: '22-12-2023'},
-        {image: carimage, model: 'Reanult', name: 'Liger', distance: '20k', fuelType: 'Petrol', gearType: 'manual', price: '2Lakh', date: '22-12-2023'},
-        {image: carimage, model: 'Reanult', name: 'Liger', distance: '20k', fuelType: 'Petrol', gearType: 'manual', price: '2Lakh', date: '22-12-2023'},
-        {image: carimage, model: 'Reanult', name: 'Liger', distance: '20k', fuelType: 'Petrol', gearType: 'manual', price: '2Lakh', date: '22-12-2023'},
-        {image: carimage, model: 'Reanult', name: 'Liger', distance: '20k', fuelType: 'Petrol', gearType: 'manual', price: '2Lakh', date: '22-12-2023'}
-    ]
+  const [cars, setCars] = useState([])
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+      const fetchCars = async () => {
+          try {
+              const response = await axios.get('api/cars/new');
+              setCars(response.data);
+              console.log(response.data)
+              setLoading(false);
+          } catch (err) {
+              setError(err.message);
+              setLoading(false);
+          }
+      };
+
+      fetchCars();
+  }, []);
 
   return (
     <Box py={5} px={7}>

@@ -29,7 +29,7 @@ function App() {
           <Route path="/used-car" element={<UsedCar/>}/>
           <Route path="/sell-car" element={<SellCar/>}/>
           <Route path="/favourites" element={<Favourites/>}/>
-          <Route exact path="/cars/:carId" element={<CarDetails/>}/>
+          <Route exact path="/:carId" element={<CarDetails/>}/>
           <Route exact path="/search/:query" element={<SearchResult/>}/>
           {/* <Route path="/settings" element={<Settings/>}/> */}
           <Route path="/account" element={<Settings/>}/>
