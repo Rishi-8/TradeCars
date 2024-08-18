@@ -29,7 +29,7 @@ const getCar = async(req, res) => {
 
 const getNewCars = async (req, res) => {
     try{
-        const cars = await Car.find({user_id: req.user.id, usedPeriod: 0})
+        const cars = await Car.find({usedPeriod: 0})
         res.status(200).json(cars)
     }
     catch(error){
@@ -40,7 +40,7 @@ const getNewCars = async (req, res) => {
 
 const getUsedCars = async (req, res) => {
     try{
-        const cars = await Car.find({user_id: req.user.id, usedPeriod: {$gt: 0}})
+        const cars = await Car.find({usedPeriod: {$gt: 0}})
         res.status(200).json(cars)
     }
     catch(error){

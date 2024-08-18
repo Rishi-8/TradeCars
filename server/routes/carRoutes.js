@@ -4,9 +4,9 @@ import { protect } from "../middlewares/authMiddleware.js";
 const router = express.Router()
 
 router.use(protect)
-router.route("/").get(getCars).post(createCar)
+router.route("/").get(protect, getCars).post(protect, createCar)
 router.route("/new").get(getNewCars)
 router.route("/used").get(getUsedCars)
-router.route("/:id").get(getCar).put(updateCar).delete(deleteCar)
+router.route("/:id").get(protect, getCar).put(protect, updateCar).delete(protect, deleteCar)
 
 export default router
