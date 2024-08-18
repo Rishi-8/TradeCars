@@ -1,59 +1,56 @@
 import { Box, Button, Card, HStack, Image, Text } from '@chakra-ui/react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AddCarModal } from './AddCarModal'
+import axios from 'axios'
 
 export const UserCarList = () => {
+    const [cars, setCars] = useState([])
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchCars = async () => {
+            const token = localStorage.getItem('token')
+            try {
+                const response = await axios.get('api/cars',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    }
+                );
+                setCars(response.data);
+                console.log(response.data)
+                setLoading(false);
+            } catch (err) {
+                setError(err.message);
+                setLoading(false);
+            }
+        };
+
+        fetchCars();
+    }, []);
 
     const [isCarModalOpen, setIsCarModalOpen] = useState(false)
-
-    const cars = [
-        {
-            name: "Car Name",
-            image: "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            fuelType: "petrol",
-            gearType: "Manual",
-            price: 90000000,
-        },
-        {
-            name: "Car Name",
-            image: "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            fuelType: "petrol",
-            gearType: "Manual",
-            price: 90000000,
-        },
-        {
-            name: "Car Name",
-            image: "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            fuelType: "petrol",
-            gearType: "Manual",
-            price: 90000000,
-        },
-        {
-            name: "Car Name",
-            image: "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-            fuelType: "petrol",
-            gearType: "Manual",
-            price: 90000000,
-        }
-    ]
 
     return (
         <div>
             <HStack align='center' justifyContent='space-between'>
                 <Text fontSize='2xl' fontWeight='700'>Your Cars</Text>
-                <Button colorScheme='teal' onClick={()=>setIsCarModalOpen(true)}>Add Car</Button>
-                <AddCarModal isOpen={isCarModalOpen} onClose={()=>setIsCarModalOpen(false)}/>
+                <Button colorScheme='teal' onClick={() => setIsCarModalOpen(true)}>Add Car</Button>
+                <AddCarModal isOpen={isCarModalOpen} onClose={() => setIsCarModalOpen(false)} />
             </HStack>
             {
-                cars.map((car, index) =>
-                    <Card p={5} my={4} key={index}>
+                cars.map((car) =>
+                    <Card p={5} my={4} key={car._id}>
                         <HStack height='100px'>
                             <Image
-                                src={car.image}
+                                src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
                                 width='150px'
                             />
                             <Box>
-                                <Text fontSize='md' fontWeight='500'>{car.name}</Text>
+                                <Text fontSize='md' fontWeight='500'>{car.make}</Text>
+                                <Text fontSize='sm'>{car.model}</Text>
                                 <Text fontSize='sm'>{car.fuelType} . {car.gearType}</Text>
                                 <Text fontSize='md' fontWeight='500'>Rs. {car.price}</Text>
                             </Box>

@@ -1,6 +1,7 @@
-import { Button, Center, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select } from '@chakra-ui/react'
+import { Button, Center, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, useToast } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export const AddCarModal = ({ isOpen, onClose }) => {
     const [make, setMake] = useState('')
@@ -11,6 +12,10 @@ export const AddCarModal = ({ isOpen, onClose }) => {
     const [gearType, setGearType] = useState('')
     const [location, setLocation] = useState('')
     const [price, setPrice] = useState('')
+
+    const navigate = useNavigate()
+
+    const toast = useToast()
 
     const handleFormSubmit = async (e) => {
         e.preventDefault()
@@ -34,9 +39,23 @@ export const AddCarModal = ({ isOpen, onClose }) => {
                     }
                 }
             )
-            console.log(res.data)
+            onClose()
+            navigate('/car-listing')
+            toast({
+                title: 'Car Created Successfully',
+                status: 'success',
+                position: 'top',
+                isClosable: 'true'
+              })
+
         } catch (error) {
             console.error(error)
+            toast({
+                title: 'Car not created',
+                status: 'error',
+                position: 'top',
+                isClosable: 'true'
+              })
         }
     }
 
