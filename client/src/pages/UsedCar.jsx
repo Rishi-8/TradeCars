@@ -2,6 +2,7 @@ import { Box, Heading} from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { CarListing } from '../components/CarListing'
+import apiClient from '../apiClient'
 
 export const UsedCar = () => {
 
@@ -12,7 +13,7 @@ export const UsedCar = () => {
   useEffect(() => {
       const fetchCars = async () => {
           try {
-              const response = await axios.get('api/cars/used');
+              const response = await apiClient.get('api/cars/used');
               setCars(response.data);
               console.log(response.data)
               setLoading(false);

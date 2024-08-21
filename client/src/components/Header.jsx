@@ -4,6 +4,7 @@ import { FaSearch, FaHeart } from "react-icons/fa";
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import apiClient from '../apiClient';
 
 export const Header = () => {
   const [searchQuery, setSearchQuery] = useState("")
@@ -19,7 +20,7 @@ export const Header = () => {
           Authorization: `Bearer ${token}`
         }
       };
-      axios.get('api/users/profile', config)
+      apiClient.get('/api/users/profile', config)
         .then(response => {
           setUser(response.data.name)
         })
@@ -72,9 +73,9 @@ export const Header = () => {
             </HStack>
           </MenuButton>
           <MenuList>
-            <MenuItem as={Link} _hover={{textDecoration:'none'}} href='/account'>Account</MenuItem>
-            <MenuItem as={Link} _hover={{textDecoration:'none'}} href='/orders'>Your Orders</MenuItem>
-            <MenuItem as={Link} _hover={{textDecoration:'none'}} href='/car-listing'>Your Cars Listing</MenuItem>
+            <MenuItem as={Link} _hover={{textDecoration:'none'}} href='/settings/account'>Account</MenuItem>
+            <MenuItem as={Link} _hover={{textDecoration:'none'}} href='/settings/orders'>Your Orders</MenuItem>
+            <MenuItem as={Link} _hover={{textDecoration:'none'}} href='/settings/car-listing'>Your Cars Listing</MenuItem>
             <MenuDivider />
             <MenuItem onClick={handleLogOut}>Sign out</MenuItem>
             <Text ml={3}>{user}</Text>

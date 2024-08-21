@@ -1,8 +1,9 @@
 import { Box, Button, Card, Flex, Heading, Image, Tag, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import carimage from '../assets/carimage.jpg'
 import axios from 'axios'
+import apiClient from '../apiClient'
 
 export const CarDetails = () => {
     const [car, setCar] = useState({})
@@ -14,7 +15,7 @@ export const CarDetails = () => {
     useEffect(() => {
         const fetchCar = async () => {
             try {
-                const response = await axios.get(`api/cars/${carId}`);
+                const response = await apiClient.get(`api/cars/${carId}`);
                 setCar(response.data);
                 console.log(response.data)
                 setLoading(false);
@@ -39,7 +40,7 @@ export const CarDetails = () => {
                     <Tag borderRadius='full' colorScheme='green' width='fit-content' mb={5}>{car.usedDistance == 0 ? "New" : "Old"}</Tag>
                     <Text>{car.usedDistance} kms . {car.fuelType} . {car.gearType} . 1st Owner</Text>
                     <Text fontSize='2xl' fontWeight='700' mb={5}>Rs. {car.price}</Text>
-                    <Button colorScheme='purple' size='lg'>Buy this car</Button>
+                    <Button colorScheme='purple' size='lg' as={Link} to={`/checkout/${carId}`}>Buy this car</Button>
                 </Card>
             </Flex>
         </Box>

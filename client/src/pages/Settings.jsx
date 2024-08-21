@@ -1,6 +1,6 @@
 import { Avatar, Box, Card, HStack, Link, Stack, Tab, TabList, Tabs, Text } from '@chakra-ui/react'
 import React from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { Account } from '../components/Account'
 import { UserCarList } from '../components/UserCarList'
 
@@ -20,15 +20,14 @@ export const Settings = () => {
                     <Text fontWeight='600'>user@email.com</Text>
                 </Stack>
                 <Stack p='10px' gap='0'>
-                    <Link as={NavLink} to='/account' _hover={{ textDecoration: "none" }}  _activeLink={{color: 'blue.500', bg: 'blue.50'}} fontSize='1.1rem' fontWeight='600' p={2} px={4} borderRadius='10px'>Account</Link>
-                    <Link as={NavLink} to='/orders' _hover={{ textDecoration: "none" }} _activeLink={{color: 'blue.500', bg: 'blue.50'}} fontSize='1.1rem' fontWeight='600' p={2} px={4} py={2} borderRadius='10px'>Your Orders</Link>
-                    <Link as={NavLink} to='/car-listing' _hover={{ textDecoration: "none" }} _activeLink={{color: 'blue.500', bg: 'blue.50'}} fontSize='1.1rem' fontWeight='600' p={2} px={4} py={2} borderRadius='10px'>Your Car Listing</Link>
-                    <Link as={NavLink} to='/favourites' _hover={{ textDecoration: "none" }} _activeLink={{color: 'blue.500', bg: 'blue.50'}} fontSize='1.1rem' fontWeight='600' p={2} px={4} py={2} borderRadius='10px'>Favourites</Link>
+                    <Link as={NavLink} to='account' _hover={{ textDecoration: "none" }}  _activeLink={{color: 'blue.500', bg: 'blue.50'}} fontSize='1.1rem' fontWeight='600' p={2} px={4} borderRadius='10px'>Account</Link>
+                    <Link as={NavLink} to='orders' _hover={{ textDecoration: "none" }} _activeLink={{color: 'blue.500', bg: 'blue.50'}} fontSize='1.1rem' fontWeight='600' p={2} px={4} py={2} borderRadius='10px'>Your Orders</Link>
+                    <Link as={NavLink} to='car-listing' _hover={{ textDecoration: "none" }} _activeLink={{color: 'blue.500', bg: 'blue.50'}} fontSize='1.1rem' fontWeight='600' p={2} px={4} py={2} borderRadius='10px'>Your Car Listing</Link>
+                    <Link as={NavLink} to='favourites' _hover={{ textDecoration: "none" }} _activeLink={{color: 'blue.500', bg: 'blue.50'}} fontSize='1.1rem' fontWeight='600' p={2} px={4} py={2} borderRadius='10px'>Favourites</Link>
                 </Stack>
             </Card>
             <Box flex='3'>
-                {tabComponent === 'account' && <Account/>}
-                {tabComponent === 'car-listing' && <UserCarList/>}
+                <Outlet/>
             </Box>
         </HStack>
     </Box>

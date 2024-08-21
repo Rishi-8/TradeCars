@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Types } from "mongoose";
 
 const orderSchema = new mongoose.Schema({
     user_id: {
@@ -7,10 +7,11 @@ const orderSchema = new mongoose.Schema({
         ref: "User",
     },
     car_id: {
-        type: String,
-        required: (true, "car make is mandatory")
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "Car"
     },
-    paymentIntent_id: {
+    paymentIntentId: {
         type: String,
         required: (true, "payment id is mandatory")
     },

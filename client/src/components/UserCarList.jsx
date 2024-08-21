@@ -2,6 +2,7 @@ import { Box, Button, Card, HStack, Image, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { AddCarModal } from './AddCarModal'
 import axios from 'axios'
+import apiClient from '../apiClient'
 
 export const UserCarList = () => {
     const [cars, setCars] = useState([])
@@ -12,7 +13,7 @@ export const UserCarList = () => {
         const fetchCars = async () => {
             const token = localStorage.getItem('token')
             try {
-                const response = await axios.get('api/cars',
+                const response = await apiClient.get('/api/cars',
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -23,7 +24,7 @@ export const UserCarList = () => {
                 console.log(response.data)
                 setLoading(false);
             } catch (err) {
-                setError(err.message);
+                setError(err);
                 setLoading(false);
             }
         };
@@ -32,6 +33,8 @@ export const UserCarList = () => {
     }, []);
 
     const [isCarModalOpen, setIsCarModalOpen] = useState(false)
+
+    if(loading) return <Text textAlign='center'>...Loading</Text>
 
     return (
         <div>

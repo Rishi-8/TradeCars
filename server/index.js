@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors'
 dotenv.config();
 import userRoutes from './routes/userRoutes.js'
 import carRoutes from './routes/carRoutes.js'
@@ -14,6 +15,9 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 const app = express();
 
+app.use(cors())
+
+app.use('/api/orders/stripe_webhooks', express.raw({ type: 'application/json' }));
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
