@@ -9,9 +9,11 @@ export const CheckoutForm = () => {
 
     const [message, setMessage] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setError(false)
         setMessage('processing payment...');
         if (!stripe || !elements) {
             return;
@@ -27,9 +29,11 @@ export const CheckoutForm = () => {
         });
 
         if (error.type === "card_error" || error.type === "validation_error") {
+            setError(true)
             setMessage(error.message);
         } else {
             console.log(error)
+            setError(true)
             setMessage("An unexpected error occurred.");
         }
 
@@ -45,15 +49,13 @@ export const CheckoutForm = () => {
 
             <PaymentElement id="payment-element" options={paymentElementOptions} />
             <AddressElement options={{ mode: 'shipping' }} />
-            <button disabled={isLoading || !stripe || !elements} id="submit">
+            <Button mt='20px' width='100%' colorScheme='blue' isDisabled={isLoading || !stripe || !elements} type="submit">
                 <span id="button-text">
-                    {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
+                    {isLoading ? <div className="spinner" id="spinner">...Loading</div> : "Pay now"}
                 </span>
-            </button>
+            </Button>
             {/* Show any error or success messages */}
-            {message && <div id="payment-message">{message}</div>}
-
-            <Button type='submit' disabled={!stripe}>Pay</Button>
+            {message && <div id="payment-message" style={error ? {color: 'red'}: {}}>{message}</div>}
         </form>
     )
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import apiClient from '../apiClient'
-import { Box, Text } from '@chakra-ui/react'
+import { Box, Card, HStack, Img, Text } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import { useStripe } from '@stripe/react-stripe-js'
 import Stripe from 'stripe'
@@ -54,10 +54,11 @@ export const PaymentSuccessfull = () => {
                 }
             }
         )
-        .then((res) => {
-            setOrder(res.data)
-        })
-        .catch(error=>console.log(error))
+            .then((res) => {
+                setOrder(res.data)
+                console.log(res.data)
+            })
+            .catch(error => console.log(error))
     }
 
     if (isLoading) {
@@ -69,8 +70,16 @@ export const PaymentSuccessfull = () => {
     }
 
     return (
-        <Box margin='40px auto'>
-            <Text pt='100px' textAlign='center' fontSize='xl'>{order && JSON.stringify(order)}</Text>
+        <Box textAlign='center'>
+            {order &&
+
+                <Card textAlign='center' m='auto' w='70%' bg='#e8f4e4' p='100px' marginY='100px'>
+                    <Text color='green' fontSize='2xl' mb='20px'>Your order is successfull, Thank you!</Text>
+                    <Text><span style={{fontWeight: '600'}}>Order Id:</span> {order._id}</Text>
+                    <Text><span style={{fontWeight: '600'}}>Order Total:</span> Rs. {order.car_id.price} </Text>
+                    <Text><span style={{fontWeight: '600'}}>Delivered by:</span>: Next week</Text>
+                </Card>
+            }
         </Box>
     )
 }

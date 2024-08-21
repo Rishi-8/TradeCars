@@ -5,7 +5,7 @@ import { Order } from "../models/orderModel.js"
 
 const createOrderPaymentIntent = async (req, res) => {
     try {
-        const car = await Car.findById(req.params.id).select('price')
+        const car = await Car.findById(req.params.id)
         const price = car.price
 
         const paymentIntent = await stripe.paymentIntents.create({
@@ -17,7 +17,10 @@ const createOrderPaymentIntent = async (req, res) => {
                 userId: req.user.id
             }
         })
-        res.status(200).json({ "clientSecret": paymentIntent.client_secret })
+        res.status(200).json({ 
+            "clientSecret": paymentIntent.client_secret ,
+            "car": car
+        })
     } catch (error) {
         console.error(error.message);
         res.status(error.statuscode || 500).json({ response: "An error occured", message: error })
