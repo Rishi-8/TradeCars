@@ -69,7 +69,8 @@ const createCar = async(req, res) => {
             gearType,
             location,
             price,
-            tag
+            tag,
+            cloudinaryId: req.image.cloudinaryId
         })
         res.status(200).json(car)
     }

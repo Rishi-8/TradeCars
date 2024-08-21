@@ -44,6 +44,10 @@ const carSchema = new mongoose.Schema({
     },
     tag: {
         type: String
+    },
+    cloudinaryId: {
+        type: String,
+        required: (true, "cloudinary id is mandatory")
     }
 }, {
     timestamps: true
