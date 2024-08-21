@@ -2,6 +2,7 @@ import { response } from "express"
 import { stripe } from "../index.js"
 import { Car } from "../models/carModel.js"
 import { Order } from "../models/orderModel.js"
+import cloudinary from "../utils/cloudinary.js"
 
 const createOrderPaymentIntent = async (req, res) => {
     try {
@@ -17,8 +18,8 @@ const createOrderPaymentIntent = async (req, res) => {
                 userId: req.user.id
             }
         })
-        res.status(200).json({ 
-            "clientSecret": paymentIntent.client_secret ,
+        res.status(200).json({
+            "clientSecret": paymentIntent.client_secret,
             "car": car
         })
     } catch (error) {
@@ -64,7 +65,7 @@ const getOrderByPaymentId = async (req, res) => {
     console.log(paymentIntentId)
 
     try {
-        const orderAndCar = await Order.findOne({paymentIntentId}).populate('car_id')
+        const orderAndCar = await Order.findOne({ paymentIntentId }).populate('car_id')
         res.status(200).json(orderAndCar)
     } catch (error) {
         console.error(error);
@@ -110,4 +111,14 @@ const webhookCreateOrder = async (req, res) => {
     }
 }
 
-export { createOrderPaymentIntent, createOrder, getOrders, webhookCreateOrder, getOrderByPaymentId }
+//testing image upload
+const imageUploadCloud = async (req, res) => {
+    try {
+        res.status(200).json(req.image.id)
+    } catch (error) {
+        console.log(error)
+        res.status(error.statusCode || 500).json({ 'respone': 'an error occured', 'message': error.message })
+    }
+}
+
+export { createOrderPaymentIntent, createOrder, getOrders, webhookCreateOrder, getOrderByPaymentId, imageUploadCloud }

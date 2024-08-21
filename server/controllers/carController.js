@@ -60,6 +60,7 @@ const createCar = async(req, res) => {
         }
         const car = await Car.create({
             user_id : req.user.id,
+            image: req.image.secureURL,
             make,
             model,
             usedPeriod,

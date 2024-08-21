@@ -6,6 +6,10 @@ const carSchema = new mongoose.Schema({
         required: true,
         ref: "User",
     },
+    image: {
+        type: String,
+        required: (true, "Car image is mandatory")
+    },
     make: {
         type: String,
         required: (true, "car make is mandatory")
