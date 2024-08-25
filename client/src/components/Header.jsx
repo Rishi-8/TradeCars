@@ -38,7 +38,7 @@ export const Header = () => {
     if (searchQuery.trim().length <= 0) {
       return
     }
-    else navigate(`/search/${searchQuery}`)
+    else navigate(`/search?query=${searchQuery}`)
   }
 
   const handleLogOut = () => {

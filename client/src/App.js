@@ -37,7 +37,7 @@ function App() {
         <Route path="/favourites" element={<Favourites />} />
         <Route path="/payment_successfull" element={<PaymentSuccessfull/>} />
         <Route exact path="car/:carId" element={<CarDetails/>} />
-        <Route exact path="/search/:query" element={<SearchResult />} />
+        <Route exact path="/search" element={<SearchResult />} />
         <Route path="/settings" element={<Settings />}>
           <Route path="account" element={<Account/>} />
           <Route path="orders" element={<Orders/>} />

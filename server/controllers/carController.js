@@ -120,4 +120,20 @@ const deleteCar = async(req, res) => {
     }
 }
 
-export {getCars, getCar, getNewCars, getUsedCars, createCar, updateCar, deleteCar}
+const searchCar = async(req, res) => {
+    try {
+        const query = req.query.query
+        if(!query) {
+            const error = new Error("There is no query")
+            error.statuscode = 404
+            throw error
+        }
+        const cars = await Car.find({$or: [{make: {$regex: query, $options: "i"}}, {model: {$regex: query, $options: "i"}}]})
+        res.status(200).json(cars)
+    } catch (error) {
+        console.log(error)
+        res.status(error.statuscode || 500).json({response: "An error occured", message: error.message})
+    }
+}
+
+export {getCars, getCar, getNewCars, getUsedCars, createCar, updateCar, deleteCar, searchCar}
