@@ -1,9 +1,11 @@
-import { Button, Center, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, useToast } from '@chakra-ui/react'
+import { Box, Button, Center, Flex, FormControl, FormLabel, Image, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Select, Text, useToast } from '@chakra-ui/react'
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import apiClient from '../apiClient'
 
 export const AddCarModal = ({ isOpen, onClose }) => {
+    const [image, setImage] = useState()
     const [make, setMake] = useState('')
     const [model, setModel] = useState('')
     const [usedPeriod, setusedPeriod] = useState()
@@ -20,33 +22,37 @@ export const AddCarModal = ({ isOpen, onClose }) => {
     const handleFormSubmit = async (e) => {
         e.preventDefault()
 
+        const formData = new FormData()
+        formData.append('image', image)
+        formData.append('make', make)
+        formData.append('model', model)
+        formData.append('usedPeriod', usedPeriod)
+        formData.append('usedDistance', usedDistance)
+        formData.append('fuelType', fuelType)
+        formData.append('gearType', gearType)
+        formData.append('location', location)
+        formData.append('price', price)
+
+
         const token = localStorage.getItem('token')
+        console.log(formData)
 
         try {
-            const res = await axios.post('api/cars', {
-                make,
-                model,
-                usedPeriod,
-                usedDistance,
-                fuelType,
-                gearType,
-                location,
-                price
-            },
+            const res = await apiClient.post('api/cars', formData,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
                 }
             )
+            navigate(0)
             onClose()
-            navigate('/car-listing')
             toast({
                 title: 'Car Created Successfully',
                 status: 'success',
                 position: 'top',
                 isClosable: 'true'
-              })
+            })
 
         } catch (error) {
             console.error(error)
@@ -55,7 +61,7 @@ export const AddCarModal = ({ isOpen, onClose }) => {
                 status: 'error',
                 position: 'top',
                 isClosable: 'true'
-              })
+            })
         }
     }
 
@@ -66,7 +72,18 @@ export const AddCarModal = ({ isOpen, onClose }) => {
                 <ModalHeader>Add Car</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-                    <form style={{ textAlign: 'center' }} onSubmit={handleFormSubmit}>
+                    <form style={{ textAlign: 'center' }} onSubmit={handleFormSubmit} id='myform'>
+                        <FormControl>
+                            <label htmlFor='image-upload'>
+                                {!image ?
+                                    <Flex border='dashed blue 2px' borderRadius='10px' height='250px'>
+                                        <Text marginY='auto' flex='1'>Choose an image</Text>
+                                    </Flex>:
+                                    <Image src={URL.createObjectURL(image)}/>
+                                }
+                            </label>
+                            <Input type='file' id='image-upload' accept='image/*' name='car-image' hidden onChange={(e) => setImage(e.target.files[0])} required/>
+                        </FormControl>
                         <FormControl isRequired my={4}>
                             <FormLabel>Car Make</FormLabel>
                             <Input type='text' name='make' value={make} onChange={(e) => setMake(e.target.value)} />

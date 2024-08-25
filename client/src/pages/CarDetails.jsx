@@ -33,7 +33,7 @@ export const CarDetails = () => {
         <Box py={5} px={6} minHeight='200px'>
             <Flex>
                 <Box flexBasis='55%'>
-                    <Image src={carimage} w='100%' borderRadius='lg' shadow='md' />
+                    <Image src={car.image} w='100%' borderRadius='lg' shadow='md' />
                 </Box>
                 <Card p={5} h='100%' ml='5%' flex='1'>
                     <Heading mb='2'>{car.make} {car.model}</Heading>

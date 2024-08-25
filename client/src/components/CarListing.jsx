@@ -12,7 +12,7 @@ export const CarListing = ({cars}) => {
         {cars.map((car) => (
             <Box w='25%' key={car._id}>
                 <Card overflow='hidden' w='270px' mx='auto' mb={5} _hover={{opacity:0.8, cursor:'pointer'}} onClick={() => navigate(`/car/${car._id}`)}>
-                    <Image src={carImage}/>
+                    <Image src={car.image}/>
                     <Box p={5}>
                         <Text>{car.model}</Text>
                         <Heading size='md' fontWeight='semibold'>{car.name}</Heading>

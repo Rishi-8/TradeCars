@@ -57,7 +57,7 @@ export const Checkout = () => {
                     ) : <Text>...Loading</Text>}
                 </Card>
                 <Card p='20px' flex='2' h='100%'>
-                    {orderData.car && <>
+                    {orderData.car ? <>
                         <Text mb='20px' fontSize='xl' fontWeight='700'>Order Details</Text>
                         <HStack alignItems='start'>
                             <Box flex='3'>
@@ -76,7 +76,8 @@ export const Checkout = () => {
                             <Text>Delivery Charge <span style={{ float: 'right' }}><s>Rs. {orderData.car.price}</s> Free</span></Text>
                             <hr style={{ border: '1px solid #f0f0f0', margin: '10px' }} />
                             <Text fontWeight='700'>Total Payable <span style={{ float: 'right' }}>Rs. {orderData.car.price}</span></Text>
-                        </Box></>
+                        </Box></>:
+                        <Text>....Loading</Text>
                     }
                 </Card>
             </Flex>

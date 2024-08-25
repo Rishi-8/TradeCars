@@ -61,19 +61,6 @@ export const UserCarList = () => {
                     </Card>
                 )
             }
-            <Card p={5}>
-                <HStack height='100px'>
-                    <Image
-                        src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                        width='150px'
-                    />
-                    <Box>
-                        <Text>Car Name</Text>
-                        <Text>FuelType . gearType</Text>
-                        <Text>Rs. Price</Text>
-                    </Box>
-                </HStack>
-            </Card>
         </div>
     )
 }
