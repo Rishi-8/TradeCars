@@ -43,12 +43,12 @@ export const UserCarList = () => {
                 <Button colorScheme='teal' onClick={() => setIsCarModalOpen(true)}>Add Car</Button>
                 <AddCarModal isOpen={isCarModalOpen} onClose={() => setIsCarModalOpen(false)} />
             </HStack>
-            {
+            {cars.length !== 0 ? 
                 cars.map((car) =>
                     <Card p={5} my={4} key={car._id}>
                         <HStack height='100px'>
                             <Image
-                                src="https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                                src={car.image}
                                 width='150px'
                             />
                             <Box>
@@ -60,6 +60,8 @@ export const UserCarList = () => {
                         </HStack>
                     </Card>
                 )
+                :
+                <Text>You have no cars</Text>
             }
         </div>
     )

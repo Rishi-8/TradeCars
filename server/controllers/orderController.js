@@ -51,7 +51,7 @@ const createOrder = async (req, res) => {
 
 const getOrders = async (req, res) => {
     try {
-        const orders = await Order.find({ user_id: req.user.id })
+        const orders = await Order.find({ user_id: req.user.id }).populate('car_id')
         res.status(200).json(orders)
     }
     catch (error) {

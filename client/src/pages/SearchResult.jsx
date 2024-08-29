@@ -1,11 +1,12 @@
 import { Box, Card, Flex, HStack, Heading, Image, Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 import carimage from '../assets/carimage.jpg'
 import apiClient from '../apiClient'
 
 export const SearchResult = () => {
   const [cars, setCars] = useState([])
+  const [loading, setLoading] = useState(false)
   const [searchParams] = useSearchParams()
 
   // const { query } = useParams()
@@ -14,6 +15,7 @@ export const SearchResult = () => {
   useEffect(() => {
 
     const fetchCars = async () => {
+      setLoading(true)
       const token = localStorage.getItem('token')
       await apiClient.get(`api/cars/search/?query=${query}`,
         {
@@ -25,6 +27,7 @@ export const SearchResult = () => {
         .then((res) => {
           console.log(res.data)
           setCars(res.data)
+          setLoading(false)
         })
         .catch((error) => console.log(error))
     }
@@ -32,12 +35,16 @@ export const SearchResult = () => {
     fetchCars()
   }, [query])
 
+  if(loading) {
+    return <Text textAlign='center'>...Loading</Text>
+  }
+
   return (
     <Box py={5} width='700px' minH='400px' mx='auto'>
       <Heading size='lg' mb={10}>{query}</Heading>
       <Flex direction='column' gap={4}>
         {cars.map((car) =>
-          <Card h='200px' key={car._id}>
+          <Card as={Link} h='200px' key={car._id} to={`/car/${car._id}`}>
             <HStack align='start'>
               <Image src={car.image} objectFit='cover' height='200px' />
               <Box p={5}>
