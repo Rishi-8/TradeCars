@@ -14,9 +14,9 @@ export const CarListing = ({cars}) => {
                 <Card overflow='hidden' w='270px' mx='auto' mb={5} _hover={{opacity:0.8, cursor:'pointer'}} onClick={() => navigate(`/car/${car._id}`)}>
                     <Image src={car.image}/>
                     <Box p={5}>
-                        <Text>{car.model}</Text>
-                        <Heading size='md' fontWeight='semibold'>{car.name}</Heading>
-                        <Text fontSize='sm'>{car.distance} km . {car.fuelType} . {car.gearType}</Text>
+                        <Text>{car.make}</Text>
+                        <Heading size='md' fontWeight='semibold'>{car.model}</Heading>
+                        <Text fontSize='sm'>{car.usedDistance} km . {car.fuelType} . {car.gearType}</Text>
                         <Text fontSize='xl' fontWeight='semibold'>Rs. {car.price}</Text>
                         <Text>{car.date}</Text>
                     </Box>

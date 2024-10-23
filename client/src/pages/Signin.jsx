@@ -1,12 +1,14 @@
-import { Box, Button, Card, Flex, FormControl, FormLabel, Heading, Image, Input, Link, Text, useToast } from '@chakra-ui/react'
+import { Box, Button, Card, Flex, FormControl, FormLabel, Heading, Icon, Image, Input, InputGroup, InputRightElement, Link, Text, useToast } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import loginimage from '../assets/login-banner.svg'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md"
  
 export const Signin = () => {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
+  const [show, setShow] = useState(false)
 
   const toast = useToast()
 
@@ -51,7 +53,17 @@ export const Signin = () => {
               </FormControl>
               <FormControl>
                 <FormLabel>Password</FormLabel>
-                <Input type='text' value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                <InputGroup>
+                  <Input type={show ? 'text' : 'password'} value={password} onChange={(e)=>setPassword(e.target.value)}/>
+                  <InputRightElement>
+                    <Icon 
+                      boxSize='1.2rem' 
+                      as={!show ? MdOutlineVisibility : MdOutlineVisibilityOff}
+                      onClick={() => setShow(!show)}
+                      cursor='pointer'
+                    />
+                  </InputRightElement>
+                </InputGroup>
               </FormControl>
               <Button w='100%' type='submit' size='lg' colorScheme='blue' mt={5}>Sign in</Button>
             </form>

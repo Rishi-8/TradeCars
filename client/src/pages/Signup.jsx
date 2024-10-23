@@ -1,10 +1,13 @@
-import { Box, Button, Card, Flex, FormControl, FormLabel, HStack, Heading, Image, Input, Link, Text, useToast } from '@chakra-ui/react'
-import React from 'react'
+import { Box, Button, Card, Flex, FormControl, FormLabel, HStack, Heading, Icon, Image, Input, InputGroup, InputRightElement, Link, Text, useToast } from '@chakra-ui/react'
+import React, { useState } from 'react'
 import loginimage from '../assets/login-banner.svg'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md"
  
 export const Signup = () => {
+
+  const [show, setShow] = useState(false)
 
   const navigate = useNavigate()
   const toast = useToast()
@@ -64,7 +67,17 @@ export const Signup = () => {
               </FormControl>
               <FormControl>
                 <FormLabel>Password</FormLabel>
-                <Input type='text'/>
+                <InputGroup>
+                  <Input type={show ? 'text' : 'password'}/>
+                  <InputRightElement>
+                    <Icon 
+                      boxSize='1.2rem' 
+                      as={!show ? MdOutlineVisibility : MdOutlineVisibilityOff}
+                      onClick={() => setShow(!show)}
+                      cursor='pointer'
+                    />
+                  </InputRightElement>
+                </InputGroup>
               </FormControl>
               <Button type='submit' w='100%' size='lg' colorScheme='blue' mt={5}>Sign up</Button>
             </form>

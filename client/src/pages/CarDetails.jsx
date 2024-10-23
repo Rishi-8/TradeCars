@@ -37,7 +37,7 @@ export const CarDetails = () => {
                 </Box>
                 <Card p={5} h='100%' ml='5%' flex='1'>
                     <Heading mb='2'>{car.make} {car.model}</Heading>
-                    <Tag borderRadius='full' colorScheme='green' width='fit-content' mb={5}>{car.usedDistance == 0 ? "New" : "Old"}</Tag>
+                    <Tag borderRadius='full' colorScheme='green' width='fit-content' mb={5}>{car.usedPeriod == 0 ? "New" : "Old"}</Tag>
                     <Text>{car.usedDistance} kms . {car.fuelType} . {car.gearType} . 1st Owner</Text>
                     <Text fontSize='2xl' fontWeight='700' mb={5}>Rs. {car.price}</Text>
                     <Button colorScheme='purple' size='lg' as={Link} to={`/checkout/${carId}`}>Buy this car</Button>
