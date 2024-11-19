@@ -8,7 +8,7 @@ import orderRoutes from './routes/orderRoutes.js'
 import connectDB from './config/db.js';
 import Stripe from 'stripe';
 
-connectDB()
+await connectDB()
 const port = process.env.PORT || 5000;
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
