@@ -6,7 +6,7 @@ import { useStripe } from '@stripe/react-stripe-js'
 import Stripe from 'stripe'
 import { loadStripe } from '@stripe/stripe-js'
 
-const stripe = await loadStripe("pk_test_51Pp4PLSGHPTtntpzOf1oOe1XcPEytmLuMnRkJhFE2sMX0rqjIu9XDilb9jAsptiOibK131o2rg3R1Y6Dy7ZP9zzk00So01t9nF")
+const stripe = await loadStripe(process.env.REACT_APP_STRIPE_PRIVATE_KEY)
 
 export const PaymentSuccessfull = () => {
     const [order, setOrder] = useState()

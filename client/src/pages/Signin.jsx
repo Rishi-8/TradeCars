@@ -4,11 +4,13 @@ import loginimage from '../assets/login-banner.svg'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { MdOutlineVisibility, MdOutlineVisibilityOff } from "react-icons/md"
+import { useAuth } from '../contexts/AuthContext';
  
 export const Signin = () => {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const [show, setShow] = useState(false)
+  const { refetchUser } = useAuth();
 
   const toast = useToast()
 
@@ -20,6 +22,7 @@ export const Signin = () => {
       const res = await axios.post('api/users/auth', {email, password})
       if(res?.data?.token){
         localStorage.setItem('token', res.data.token)
+        await refetchUser()
         navigate("/")
         toast({
           title: 'Login Successful',

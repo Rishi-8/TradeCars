@@ -6,7 +6,7 @@ import apiClient from '../apiClient'
 import { Box, Card, Flex, HStack, Img, Text } from '@chakra-ui/react'
 import { CheckoutForm } from '../components/checkoutForm'
 
-const stripePromise = loadStripe("pk_test_51Pp4PLSGHPTtntpzOf1oOe1XcPEytmLuMnRkJhFE2sMX0rqjIu9XDilb9jAsptiOibK131o2rg3R1Y6Dy7ZP9zzk00So01t9nF")
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PRIVATE_KEY)
 
 export const Checkout = () => {
     const [orderData, setOrderData] = useState({})
